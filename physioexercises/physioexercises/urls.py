@@ -16,8 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from exercises.views import ExerciseListView 
+from exercises.views import ExerciseListView, search_exercises
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', ExerciseListView.as_view(), name='home')
+    path('', ExerciseListView.as_view(), name='home'),
+    path('search/', search_exercises, name='search'),
+
 ]
