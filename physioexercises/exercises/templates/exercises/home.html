@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exercise List</title>
+</head>
+<body>
+    <h1>Exercise List</h1>
+    <ul>
+        {% for exercise in exercises %}
+            <li><a href="{{ exercise.url }}">{{ exercise.name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
