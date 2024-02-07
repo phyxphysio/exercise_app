@@ -1,25 +1,31 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-  </head>
-  <body>
-    <p>Hi {{patient_name}},</p>
-    <p>Great to meet with you today.</p>
-    <p>Here are the exercises we discussed.</p>
-    <p>Aim to do these {{frequency}}.</p>
-    {% for exercise in exercises %}
-    <p>
-      <a href="{{exercise.link}}" target="_blank">{{exercise.name}}</a>
-      -{{sets}} sets of {{reps}} reps
-    </p>
-    <p></p>
-    {% endfor %}
-    <p>See you on {{next_appointment}}!</p>
-    <p>Liam</p>
-  </body>
-</html>
+{% block title %}
+Exercise Email 
+{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% endblock style %}
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <div class='text-light'>
+        <p>Hi {{patient_name}},</p>
+        <p>Great to meet with you today.</p>
+        <p>Here are the exercises we discussed.</p>
+        <p>Aim to do these {{frequency}}.</p>
+        {% for exercise in exercises %}
+        <p>
+          <a href="{{exercise.link}}" target="_blank">{{exercise.name}}</a>
+          -{{sets}} sets of {{reps}} repetitions
+        </p>
+        {% endfor %}
+        <p>See you on {{next_appointment}}.</p>
+        <p>Liam</p>
+      </div>
+    </div>
+  </div>
+</div>
+    {% endblock content %}</html>

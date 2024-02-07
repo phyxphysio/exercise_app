@@ -1,9 +1,5 @@
 Physio Exercises App 
 
-Free app for sending physio exercises to patients
+Generates exercise prescription emails for physiotherapists to send to patientes
 
-Contains a database of exercises 
-
-Select which exercise to prescribe and copy them to clipboard or generate a pdf 
-
-CRUD functionality with exercises in database 
+Add, update, and delete exercises fromt eh databse

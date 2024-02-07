@@ -18,8 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from exercises.views import ExerciseListView, search_exercises
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', ExerciseListView.as_view(), name='home'),
-    path('search/', search_exercises, name='search'),
+    path('admin/', admin.site.urls, name='edit'),
+    path('', search_exercises, name='home'),
 
 ]
