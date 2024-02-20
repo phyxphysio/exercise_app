@@ -1,0 +1,18 @@
+<!-- exercises/email_preview.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <div>
+        {{ form.subject.label_tag }}: {{ form.subject }}
+    </div>
+    <div>
+        {{ form.message.label_tag }}: {{ form.message }}
+    </div>
+    <div>
+        {{ form.recipient_list.label_tag }}: {{ form.recipient_list }}
+    </div>
+    <button type="submit">Send Email</button>
+</form>
+{% endblock %}

@@ -12,20 +12,31 @@ Exercise Email
   <div class="row justify-content-center">
     <div class="col-auto">
       <div class='text-light'>
-        <p>Hi {{patient_name}},</p>
+        <p>Hi {{message_data.patient_name}},</p>
         <p>Great to meet with you today.</p>
         <p>Here are the exercises we discussed.</p>
-        <p>Aim to do these {{frequency}}.</p>
+        <p>Aim to do these {{message_data.frequency}}.</p>
         {% for exercise in exercises %}
         <p>
           <a href="{{exercise.link}}" target="_blank">{{exercise.name}}</a>
-          -{{sets}} sets of {{reps}} repetitions
+          -{{message_data.sets}} sets of {{message_data.reps}} repetitions
         </p>
         {% endfor %}
-        <p>See you on {{next_appointment}}.</p>
+        <p>See you on {{message_data.next_appointment}}.</p>
         <p>Liam</p>
+        <img src="'https://physioward.com.au/wp-content/uploads/2022/09/physioward-secondary-logo-stacked-left-full-color-rgb.svg'
+        " alt="Physioward logo">
       </div>
+      <form action="{% url "send_email" %}" method="post">
+        <!-- Any form inputs you want to include in the POST request go here -->
+        <!-- This could be hidden inputs or other types of inputs for user interaction -->
+    
+        <button type="submit" class='btn-primary'>Send Email</button>
+        <!-- Alternatively, you can use: <input type="submit" value="Send POST Request"> -->
+    </form>
+    
     </div>
   </div>
 </div>
+
     {% endblock content %}</html>

@@ -16,9 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from exercises.views import ExerciseListView, search_exercises
+from exercises.views import search_exercises, send_email, SuccessView
 urlpatterns = [
     path('admin/', admin.site.urls, name='edit'),
     path('', search_exercises, name='home'),
+    path('send_email/', send_email, name='send_email'),
+    path('success/', SuccessView.as_view, name='success'),
+
+
+
 
 ]
