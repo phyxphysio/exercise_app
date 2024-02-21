@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls, name='edit'),
     path('', search_exercises, name='home'),
     path('send_email/', send_email, name='send_email'),
-    path('success/', SuccessView.as_view, name='success'),
+    path('success/', SuccessView.as_view(), name='success'),
 
 
 

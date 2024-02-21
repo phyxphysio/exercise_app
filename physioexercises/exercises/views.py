@@ -61,26 +61,38 @@ def send_email(request):
         if form.is_valid():
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
-            recipient_list = [form.cleaned_data['recipient_list']]  # Adjust as needed
+            recipient_list = form.cleaned_data['recipient_list']  # Adjust as needed
 
             # Send the email
             send_mail(
                 subject=subject,
-                message=strip_tags(message),  # Plain text version
+                message=message,  # Plain text version
                 from_email=settings.EMAIL_HOST_USER,
-                recipient_list=recipient_list,
-                html_message=message,  # HTML version
+                recipient_list=[recipient_list],
             )
 
             return redirect('success')
     else:
         # Prepare initial data for the form
+        patient_name = message_data['patient_name']  # The name of the patient
+        frequency = message_data['frequency']  # The frequency of the specific action/medication
+        sets = message_data['sets']  # The number of sets (often in the context of physical exercises or any other routine)
+        reps = message_data['reps']  # The number of repetitions in every set
+        next_appointment = message_data['next_appointment']  # The next scheduled appointment date (can be a date string or a datetime object)
         exercises_list = [Exercise.objects.get(id=ex_id) for ex_id in message_data['exercises']]
-        html_content = render_to_string("exercises/search_results.html", {"message_data": message_data, "exercises": exercises_list})
+        
+        message = f"""Hi, {patient_name},
+Here are the exercises we discussed today. 
+Try do these {frequency} times per week.
+         """
+        for exercise in exercises_list:
+            message += f'\n{exercise.name} - {exercise.link}\n-{sets} sets of {reps} repetitions\n'
+        message += f"\nSee you at {next_appointment},\n\n Liam\nPhysioward Brookvale "
+             
         initial_data = {
             'subject': "Physio Exercises",
-            'message': html_content,
-            'recipient_list': [message_data['patient_email']],  # Adjust based on your requirements
+            'message': message,
+            'recipient_list': message_data['patient_email'].strip("'"),  # Adjust based on your requirements
         }
         form = EmailForm(initial=initial_data)
 
@@ -122,5 +134,5 @@ def send_email(request):
 #         return render(request, "exercises/search_results.html", {"message_data": message_data, "exercises":exercises_list})
 
 class SuccessView(TemplateView):
-    template = 'exercises/success.html' 
+    template_name = 'exercises/success.html' 
 

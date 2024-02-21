@@ -1,4 +1,16 @@
-{% extends "base.html" %} {% block 'title' %}Success{% endblock 'title' %} {%
-block 'content' %}
-<h1>Email sent</h1>
-{% endblock 'content' %}
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Success{% endblock title %}
+
+{% block content %}
+<div class='container '>
+    <div class='row bg-success align-iitems-center justify-conent-center'>
+        <div class='col text-center text-light'>
+            <h1 class='display-1'>Email sent successfully</h1>
+        </div>
+
+    </div>
+
+</div>
+{% endblock content %}
