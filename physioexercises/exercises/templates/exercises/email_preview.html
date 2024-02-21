@@ -1,24 +1,23 @@
 <!-- exercises/email_preview.html -->
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% endblock style %}
 {% block content %}
-<div class='container bg-secondary'>
-    <div class='row justify-content-center'>
+<div class='container bg-dark'>
+    <div class='row mx-auto justify-content-center'>
         <div class='col-md-6  text-light'>
-            <form method="post">
+            <h1>Email Preview</h1>
+            <form method="post" class='mt-4'>
                 {% csrf_token %}
                 <div>
-                    {{ form.subject.label_tag }}: {{ form.subject }}
+                    {% crispy form %}
                 </div>
-                <div>
-                    {{ form.message.label_tag }}: {{ form.message }}
-                </div>
-                <div>
-                    {{ form.recipient_list.label_tag }}: {{ form.recipient_list }}
-                </div>
-                <button type="submit">Send Email</button>
+                <a href="javascript:history.back()" class="btn btn-secondary mx-auto d-block w-25 mb-4">Go Back</a>
             </form>
-        </div>
+            </div>
     </div>
 </div>
 {% endblock %}

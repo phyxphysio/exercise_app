@@ -81,7 +81,7 @@ def send_email(request):
         next_appointment = message_data['next_appointment']  # The next scheduled appointment date (can be a date string or a datetime object)
         exercises_list = [Exercise.objects.get(id=ex_id) for ex_id in message_data['exercises']]
         
-        message = f"""Hi, {patient_name},
+        message = f"""Hi {patient_name},
 Here are the exercises we discussed today. 
 Try do these {frequency} times per week.
          """

@@ -2,15 +2,16 @@
 {% load static %}
 
 {% block title %}Success{% endblock title %}
-
+{% block style %}
+<link rel="stylesheet" href="{% static 'success.css' %}">
+{% endblock style %}
 {% block content %}
-<div class='container '>
-    <div class='row bg-success align-iitems-center justify-conent-center'>
-        <div class='col text-center text-light'>
+<div class='container'>
+    <div class='row align-items-center justify-content-center' style="height: 100vh;"> <!-- Corrected class names -->
+        <div class='col text-center text-light success-circle'>
+            <i class="fas fa-thumbs-up fa-7x"></i> <!-- Font Awesome Thumbs-up Icon -->
             <h1 class='display-1'>Email sent successfully</h1>
         </div>
-
     </div>
-
 </div>
 {% endblock content %}

@@ -1,0 +1,14 @@
+/* body {
+    background-color: green;
+} */
+/* success.css */
+.success-circle {
+    background-color: #4CAF50; /* Green background */
+    border-radius: 70%; /* Makes the div circular */
+    display: inline-flex; /* Allows the content to be flexibly positioned */
+    flex-direction: column; /* Aligns children vertically */
+    align-items: center; /* Centers children horizontally */
+    justify-content: center; /* Centers children vertically */
+    padding: 50px; /* Adjust the padding to control the size of the circle */
+    text-align: center; /* Ensures text is centered */
+}
