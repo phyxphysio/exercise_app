@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'exercises',
     'crispy_forms',
-    'crispy_bootstrap5',  # Forgetting this was probably your error
+    'crispy_bootstrap5', 
+    'silk',
 
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
@@ -63,6 +64,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'silk.middleware.SilkyMiddleware',
+
 ]
 
 ROOT_URLCONF = 'physioexercises.urls'

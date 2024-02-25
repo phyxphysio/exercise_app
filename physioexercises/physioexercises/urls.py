@@ -15,15 +15,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from exercises.views import search_exercises, send_email, SuccessView
 urlpatterns = [
     path('admin/', admin.site.urls, name='edit'),
     path('', search_exercises, name='home'),
     path('send_email/', send_email, name='send_email'),
     path('success/', SuccessView.as_view(), name='success'),
-
-
-
+    path('silk/', include('silk.urls', namespace='silk')),
 
 ]
