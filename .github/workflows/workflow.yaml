@@ -39,5 +39,5 @@ jobs:
           echo "Setup of environment variables is complete."
 
       - name: Run pytest
-      run: cd physioexercises && pytest
+        run: cd physioexercises && pytest
         
