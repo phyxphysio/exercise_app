@@ -11,6 +11,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
+      EMAIL_HOST_USER: ${{ secrets.EMAIL_HOST_USER }}
+      EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}
+      EMAIL_PORT: ${{ secrets.EMAIL_PORT }}
+      EMAIL_BACKEND: ${{ secrets.EMAIL_BACKEND }}
+      EMAIL_USE_TLS: ${{ secrets.EMAIL_USE_TLS }}
+      DEBUG: ${{ secrets.DEBUG }}
+      DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
 
     steps:
       - uses: actions/checkout@v2
@@ -25,19 +34,5 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r physioexercises/requirements.txt
 
-      - name: Setup Environment Variables
-        env:
-          EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
-          EMAIL_HOST_USER: ${{ secrets.EMAIL_HOST_USER }}
-          EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}
-          EMAIL_PORT: ${{ secrets.EMAIL_PORT }}
-          EMAIL_BACKEND: ${{ secrets.EMAIL_BACKEND }}
-          EMAIL_USE_TLS: ${{ secrets.EMAIL_USE_TLS }}
-          DEBUG: ${{ secrets.DEBUG }}
-          DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
-        run: |
-          echo "Setup of environment variables is complete."
-
       - name: Run pytest
         run: cd physioexercises && pytest
-        
