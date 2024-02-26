@@ -39,4 +39,4 @@ jobs:
           echo "Setup of environment variables is complete."
 
       - name: Run pytest
-        run: pytest
+        run: physioexercises/pytest
