@@ -32,7 +32,7 @@ EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS') == 'True'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG')
+DEBUG = os.getenv('DEBUG') == 'True'
 
 ALLOWED_HOSTS = []
 
