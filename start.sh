@@ -1,4 +1,4 @@
-cd /Users/liammiller/Desktop/Coding\ Projects/exercise_app/
+cd /Users/liammiller/Desktop/coding/exercise_app/
 source .venv/bin/activate
 python physioexercises/manage.py runserver &
 open -a "Google Chrome" http://127.0.0.1:8000/&
