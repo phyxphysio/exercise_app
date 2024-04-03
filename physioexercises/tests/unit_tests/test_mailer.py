@@ -8,7 +8,7 @@ from exercises.forms import EmailForm  # Assuming this is the form used in your 
 from exercises.models import Exercise
 
 # Helper function to add session to request
-def add_session_to_request(request):
+def add_session_to_request(request,):
     # Instead of using SessionMiddleware, manually set up the session
     session = SessionStore()
     session.save()  # Saving the session to generate session_key
@@ -16,40 +16,51 @@ def add_session_to_request(request):
 
 
 @pytest.mark.django_db
-def test_send_email_view_get_request(rf, mocker):
-    # Setup request with session data
-    request = rf.get(reverse("send_email"))
-    exercise = Exercise.objects.create(name="Test Exercise", link="http://example.com")
+def test_send_email_view_get_request(client, test_user):
+    # Log in the test user
+    client.force_login(test_user)
 
-    add_session_to_request(request)
-    request.session["message"] = {
+    # Setup an Exercise instance for the session
+    exercise = Exercise.objects.create(name="Test Exercise", link="http://example.com")
+    
+    # Define the URL for the GET request
+    url = reverse("send_email")
+
+    # Setup session data
+    session = client.session
+    session["message"] = {
         "patient_name": "John Doe",
         "frequency": "daily",
         "sets": 3,
         "reps": 10,
         "next_appointment": "2024-02-28",
-        "exercises": [1],
+        "exercises": [exercise.id],  # Assuming your view expects IDs in the session
         "patient_email": "patient@example.com",
     }
+    session.save()
 
-    response = send_email(request)
-    assert response.status_code == 200
+    # Make the GET request to the send_email view
+    response = client.get(url)
 
+    # Assertions
+    assert response.status_code == 200  # Expecting a 200 OK response
 
 @pytest.mark.django_db
-def test_send_email_view_post_request(rf, mocker):
+def test_send_email_view_post_request(client, test_user):
+    # Log in the test user
+    client.force_login(test_user)
 
-    # Setup request with session data
-    request = rf.post(
-        reverse("send_email"),
-        {
-            "subject": "Test Subject",
-            "message": "This is a test message.",
-            "recipient_list": "recipient@example.com",
-        },
-    )
-    add_session_to_request(request)
-    request.session["message"] = {
+    # Define the URL and data for the POST request
+    url = reverse("send_email")
+    data = {
+        "subject": "Test Subject",
+        "message": "This is a test message.",
+        "recipient_list": ["recipient@example.com"],  # recipient_list should typically be a list
+    }
+    
+    # Setup session data if needed
+    session = client.session
+    session["message"] = {
         "patient_name": "John Doe",
         "frequency": "daily",
         "sets": 3,
@@ -58,14 +69,14 @@ def test_send_email_view_post_request(rf, mocker):
         "exercises": 1,
         "patient_email": "patient@example.com",
     }
+    session.save()
 
-    response = send_email(request)
-    assert (
-        response.status_code == 302
-    )  # Expecting a redirect on successful form submission
+    # Make the POST request to the send_email view
+    response = client.post(url, data)
 
-    # Verify send_mail was called
-    assert (
-        len(mail.outbox) == 1
-    )  # Alternatively, check this if you want to inspect the sent email
+    # Assertions
+    assert response.status_code == 302  # Expecting a redirect on successful form submission
+
+    # Verify an email was sent
+    assert len(mail.outbox) == 1
     assert mail.outbox[0].subject == "Test Subject"

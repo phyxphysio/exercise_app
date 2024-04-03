@@ -13,7 +13,7 @@ class SearchForm(forms.Form):
     reps = forms.IntegerField(initial=8, required=False)
     next_appointment = forms.CharField(initial='our next appointment', max_length=20, required=False)
 
-    query = forms.CharField(label="Exercise keywords, seperated by comma")
+    query = forms.CharField(label="Exercise keywords, separated by comma")
 
 
 class EmailForm(forms.Form):
