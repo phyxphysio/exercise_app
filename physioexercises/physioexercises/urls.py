@@ -17,7 +17,9 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from exercises.views import search_exercises, send_email, SuccessView
+from exercises.views import search_exercises, send_email, SuccessView, ExerciseListView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls, name="edit"),
@@ -26,4 +28,9 @@ urlpatterns = [
     path("success/", SuccessView.as_view(), name="success"),
     path("silk/", include("silk.urls", namespace="silk")),
     path("accounts/", include("django.contrib.auth.urls")),
+    path("exercises/", ExerciseListView.as_view(), name="exercises")
+ 
 ]
+if bool(settings.DEBUG):
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

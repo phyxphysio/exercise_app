@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% endblock style %}
+<h1>Exercise List</h1>
+<div class='row'>
+{% for exercise in object_list %}
+<div class="col-md-3 mb-5">
+<div class="card" style="width: 18rem;">
+    <img src="{{exercise.image.url}}" class="card-img-top" alt="{{exercise.name}}">
+    <div class="card-body">
+      <h5 class="card-title">{{exercise.name}}</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="{{exercise.link}}" class="btn btn-primary">view Video</a>
+      <a href="/admin/exercises/exercise/{{exercise.id}}/change/" class="btn btn-secondary">Edit Exercise</a>
+
+    </div>
+  </div>
+</div>
+{% endfor %}
+</div>
+{% endblock content %}

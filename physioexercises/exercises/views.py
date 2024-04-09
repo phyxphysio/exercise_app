@@ -108,3 +108,7 @@ Try do these {frequency} times per week.
 
 class SuccessView(TemplateView):
     template_name = "exercises/success.html"
+
+class ExerciseListView(ListView):
+    model = Exercise
+    template = 'exercises/exercises.html'
