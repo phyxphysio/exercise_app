@@ -1,2 +1,7 @@
 start.sh
 stop.sh
+.DS_Store
+.env.example
+.pytest*
+db.sqlite3
+requirements-dev.txt

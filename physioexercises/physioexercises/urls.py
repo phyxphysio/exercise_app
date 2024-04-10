@@ -26,11 +26,9 @@ urlpatterns = [
     path("", search_exercises, name="home"),
     path("send_email/", send_email, name="send_email"),
     path("success/", SuccessView.as_view(), name="success"),
-    path("silk/", include("silk.urls", namespace="silk")),
     path("accounts/", include("django.contrib.auth.urls")),
-    path("exercises/", ExerciseListView.as_view(), name="exercises")
- 
+    path("exercises/", ExerciseListView.as_view(), name="exercises"),
 ]
 if bool(settings.DEBUG):
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
+#     urlpatterns += path("silk/", include("silk.urls", namespace="silk")),
