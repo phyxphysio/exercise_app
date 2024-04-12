@@ -32,6 +32,8 @@ jobs:
 
       AWS_REGION: ap-southeast-2
       SERVICE_NAME: container-service-1
+      USE_S3: ${{ secrets.USE_S3 }}
+      AWS_STORAGE_BUCKET_NAME: ${{ secrets.AWS_STORAGE_BUCKET_NAME }}
 
     steps:
       - uses: actions/checkout@v2
@@ -41,19 +43,22 @@ jobs:
         with:
           python-version: 3.12
 
+      - name: Change to physioexercises directory
+        run: cd physioexercises
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r physioexercises/requirements.txt
+          pip install -r requirements.txt requirements-CI.txt
 
-      - name: Lint and test
-        run: cd physioexercises && flake8 && pytest
+      - name: Run ruff
+        run: ruff check .
+
+      - name: Run Pytest
+        run: pytest
 
       - name: Build Docker Image - Web
-        run: docker build -t web -f src/physioexercises/Dockerfile .
-
-      - name: Build Docker Image - Nginx
-        run: docker build -t service -f src/nginx/Dockerfile .
+        run: docker build -t web -f Dockerfile .
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -75,20 +80,9 @@ jobs:
             --label web \
             --image web:latest
 
-      - name: Push Docker Image - Nginx
-        run: |
-          aws lightsail push-container-image \
-            --service-name ${{ env.SERVICE_NAME }} \
-            --label nginx \
-            --image nginx:latest
-
       - name: Get Docker Image Version - Web
         run: >
           echo "IMAGE_WEB=$(aws lightsail get-container-images --service-name ${{ env.SERVICE_NAME }} | jq -r '.containerImages | map(select(.image | contains ("web") )) | .[0].image')" >> $GITHUB_ENV
-
-      - name: Get Docker Image Version - Service
-        run: >
-          echo "IMAGE_SERVICE=$(aws lightsail get-container-images --service-name ${{ env.SERVICE_NAME }} | jq -r '.containerImages | map(select(.image | contains ("service") )) | .[0].image')" >> $GITHUB_ENV
 
       - name: Generate containers.json file
         run: |

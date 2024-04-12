@@ -6,3 +6,7 @@ stop.sh
 db.sqlite3
 requirements-dev.txt
 Dockerfile.prod
+tests
+pytest.ini
+*.pyc
+ruff_cache
