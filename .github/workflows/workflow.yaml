@@ -1,4 +1,4 @@
-name: Django Pytest Workflow
+name: Exercise App CI/CD
 
 on:
   push:
@@ -21,6 +21,18 @@ jobs:
       DEBUG: ${{ secrets.DEBUG }}
       DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
 
+      DJANGO_ALLOWED_HOSTS: ${{ secrets.DJANGO_ALLOWED_HOSTS }}
+      SQL_ENGINE: ${{ secrets.SQL_ENGINE }}
+      SQL_DATABASE: ${{ secrets.SQL_DATABASE }}
+      SQL_USER: ${{ secrets.SQL_USER }}
+      SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
+      SQL_HOST: ${{ secrets.SQL_HOST }}
+      SQL_PORT: ${{ secrets.SQL_PORT }}
+      DATABASE: ${{ secrets.DATABASE }}
+
+      AWS_REGION: ap-southeast-2
+      SERVICE_NAME: container-service-1
+
     steps:
       - uses: actions/checkout@v2
 
@@ -34,5 +46,58 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r physioexercises/requirements.txt
 
-      - name: Run pytest
-        run: cd physioexercises && pytest
+      - name: Lint and test
+        run: cd physioexercises && flake8 && pytest
+
+      - name: Build Docker Image - Web
+        run: docker build -t web -f src/physioexercises/Dockerfile .
+
+      - name: Build Docker Image - Nginx
+        run: docker build -t service -f src/nginx/Dockerfile .
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Install AWS Lightsail
+        run: |
+          curl "https://s3.us-west-2.amazonaws.com/lightsailctl/latest/linux-amd64/lightsailctl" -o "lightsailctl"
+          sudo mv "lightsailctl" "/usr/local/bin/lightsailctl"
+          sudo chmod +x /usr/local/bin/lightsailctl
+
+      - name: Push Docker Image - Web
+        run: |
+          aws lightsail push-container-image \
+            --service-name ${{ env.SERVICE_NAME }} \
+            --label web \
+            --image web:latest
+
+      - name: Push Docker Image - Nginx
+        run: |
+          aws lightsail push-container-image \
+            --service-name ${{ env.SERVICE_NAME }} \
+            --label nginx \
+            --image nginx:latest
+
+      - name: Get Docker Image Version - Web
+        run: >
+          echo "IMAGE_WEB=$(aws lightsail get-container-images --service-name ${{ env.SERVICE_NAME }} | jq -r '.containerImages | map(select(.image | contains ("web") )) | .[0].image')" >> $GITHUB_ENV
+
+      - name: Get Docker Image Version - Service
+        run: >
+          echo "IMAGE_SERVICE=$(aws lightsail get-container-images --service-name ${{ env.SERVICE_NAME }} | jq -r '.containerImages | map(select(.image | contains ("service") )) | .[0].image')" >> $GITHUB_ENV
+
+      - name: Generate containers.json file
+        run: |
+          cat containers.template.json | envsubst > containers.json
+          cat containers.json
+
+      - name: Deploy
+        run: |
+          aws lightsail create-container-service-deployment \
+            --service-name ${{ env.SERVICE_NAME }} \
+            --containers file://containers.json \
+            --public-endpoint file://endpoints.json

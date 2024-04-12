@@ -5,3 +5,4 @@ stop.sh
 .pytest*
 db.sqlite3
 requirements-dev.txt
+Dockerfile.prod
