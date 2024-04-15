@@ -22,7 +22,8 @@
       "SQL_PORT": "$SQL_PORT",
       "DATABASE": "$DATABASE",
       "USE_S3": "$USE_S3",
-      "AWS_STORAGE_BUCKET_NAME": "$AWS_STORAGE_BUCKET_NAME"
+      "AWS_STORAGE_BUCKET_NAME": "$AWS_STORAGE_BUCKET_NAME",
+      "ENV": "prod"
     }
   }
 }
