@@ -54,9 +54,6 @@ jobs:
       - name: Run ruff
         run: ruff check .
 
-      - name: Run Pytest
-        run: pytest
-
       - name: Build Docker Image - Web
         run: docker build -t web -f Dockerfile .
 

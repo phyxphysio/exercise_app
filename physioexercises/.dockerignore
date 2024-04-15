@@ -10,3 +10,5 @@ tests
 pytest.ini
 *.pyc
 ruff_cache
+tests
+Dockerfile*
