@@ -11,6 +11,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./physioexercises
     env:
       EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
       EMAIL_HOST_USER: ${{ secrets.EMAIL_HOST_USER }}
@@ -42,9 +45,6 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.12
-
-      - name: Change to physioexercises directory
-        run: cd physioexercises
 
       - name: Install dependencies
         run: |
