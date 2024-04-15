@@ -1,6 +1,5 @@
 import pytest
 from django.urls import reverse
-from django.contrib.auth.models import User
 
 
 @pytest.mark.django_db

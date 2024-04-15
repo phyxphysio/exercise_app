@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 
-from django.views.generic import ListView, FormView, TemplateView
+from django.views.generic import ListView, TemplateView
 from .models import Exercise
 from .forms import SearchForm, EmailForm
 from django.conf import settings

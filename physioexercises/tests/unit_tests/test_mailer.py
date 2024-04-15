@@ -1,10 +1,7 @@
 import pytest
 from django.urls import reverse
 from django.core import mail
-from django.test import RequestFactory
 from django.contrib.sessions.backends.db import SessionStore
-from exercises.views import send_email  # Adjust the import path as necessary
-from exercises.forms import EmailForm  # Assuming this is the form used in your view
 from exercises.models import Exercise
 
 # Helper function to add session to request
