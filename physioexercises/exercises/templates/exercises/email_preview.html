@@ -3,21 +3,29 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block style %}
-<link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 {% endblock style %}
 {% block content %}
-<div class='container bg-dark'>
-    <div class='row mx-auto justify-content-center'>
-        <div class='col-md-6  text-light'>
-            <h1>Email Preview</h1>
-            <form method="post" class='mt-4'>
-                {% csrf_token %}
-                <div>
-                    {% crispy form %}
-                </div>
-                <a href="javascript:history.back()" class="btn btn-secondary mx-auto d-block w-25 mb-4">Go Back</a>
-            </form>
+    <div class='container bg-dark'>
+        <div class='row mx-auto justify-content-center'>
+            <div class='col-md-6 text-light'>
+                <h1>Email Preview</h1>
+                <form method="post" class='mt-4'>
+                    {% csrf_token %}
+                    <div>{% crispy form %}</div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 text-center">
+                            {% if not user.is_authenticated %}
+                                <h5 class="text-warning">You need to login before to send an email</h5>
+                                <a href="{% url 'login' %}" class="btn btn-warning my-3">Login</a>
+                                <a href="#" id="goBack" class="btn btn-secondary">Go Back</a>
+                                <script src="{% static 'email_preview_script.js' %}"></script>
+                            {% endif %}
+                            <a class="btn btn-secondary mx-3">Go Back</a>
+                        </div>
+                    </div>
+                </form>
             </div>
+        </div>
     </div>
-</div>
-{% endblock %}
+{% endblock body %}

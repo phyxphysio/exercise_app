@@ -93,7 +93,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "physioexercises.wsgi.application"
 
-CSRF_TRUSTED_ORIGINS = ['https://container-service-1.gqallss9iti6e.ap-southeast-2.cs.amazonlightsail.com']
+CSRF_TRUSTED_ORIGINS = [
+    "https://container-service-1.gqallss9iti6e.ap-southeast-2.cs.amazonlightsail.com"
+]
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 

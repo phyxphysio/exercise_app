@@ -1,20 +1,23 @@
-{% extends "base.html" %} 
-{% load static %} 
-{% block title %} Send Email {%endblock title %} 
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  Send Email
+{% endblock title %}
 {% block style %}
-<link rel="stylesheet" href="{% static 'style.css' %}" />
-{% endblock style %} {% block content %}
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-6 text-light">
+  <link rel="stylesheet" href="{% static 'style.css' %}" />
+{% endblock style %}
+{% block content %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-light">
         <h1>Send Exercise Email</h1>
-      <form method="post" class="mt-5">
-        {% csrf_token %} {{ form.as_p }}
-        <div class="justify-content-center">
-          <button type="submit" class="btn btn-primary">Send Email</button>
-        </div>
-      </form>
+        <form method="post" class="mt-5">
+          {% csrf_token %} {{ form.as_p }}
+          <div class="justify-content-center">
+            <button type="submit" class="btn btn-primary">Send Email</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</div>
 {% endblock content %}

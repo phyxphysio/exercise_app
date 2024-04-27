@@ -4,8 +4,11 @@ from django.core import mail
 from django.contrib.sessions.backends.db import SessionStore
 from exercises.models import Exercise
 
+
 # Helper function to add session to request
-def add_session_to_request(request,):
+def add_session_to_request(
+    request,
+):
     # Instead of using SessionMiddleware, manually set up the session
     session = SessionStore()
     session.save()  # Saving the session to generate session_key
@@ -19,7 +22,7 @@ def test_send_email_view_get_request(client, test_user):
 
     # Setup an Exercise instance for the session
     exercise = Exercise.objects.create(name="Test Exercise", link="http://example.com")
-    
+
     # Define the URL for the GET request
     url = reverse("send_email")
 
@@ -42,6 +45,7 @@ def test_send_email_view_get_request(client, test_user):
     # Assertions
     assert response.status_code == 200  # Expecting a 200 OK response
 
+
 @pytest.mark.django_db
 def test_send_email_view_post_request(client, test_user):
     # Log in the test user
@@ -52,9 +56,11 @@ def test_send_email_view_post_request(client, test_user):
     data = {
         "subject": "Test Subject",
         "message": "This is a test message.",
-        "recipient_list": ["recipient@example.com"],  # recipient_list should typically be a list
+        "recipient_list": [
+            "recipient@example.com"
+        ],  # recipient_list should typically be a list
     }
-    
+
     # Setup session data if needed
     session = client.session
     session["message"] = {
@@ -72,7 +78,9 @@ def test_send_email_view_post_request(client, test_user):
     response = client.post(url, data)
 
     # Assertions
-    assert response.status_code == 302  # Expecting a redirect on successful form submission
+    assert (
+        response.status_code == 302
+    )  # Expecting a redirect on successful form submission
 
     # Verify an email was sent
     assert len(mail.outbox) == 1
