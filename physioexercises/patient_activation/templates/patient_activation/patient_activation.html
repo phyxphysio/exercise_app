@@ -15,7 +15,8 @@
                 <form method="post" enctype="multipart/form-data" class="mt-5">
                     {% csrf_token %} {{ form|crispy }}
                     <div class="justify-content-center">
-                        <button type="submit" class="btn btn-primary">Send Activations</button>
+                        <button type="submit" class="btn btn-primary my-3">Send Activations</button>
+                        <button class='btn btn-success' hx-get="{% url "preview_activation" %}" hx-swap="outerHTML">Preview Email</button>
                     </div>
                 </form>
             </div>

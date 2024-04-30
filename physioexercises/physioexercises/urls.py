@@ -20,7 +20,7 @@ from django.urls import path, include
 from exercises.views import search_exercises, send_email, SuccessView, ExerciseListView
 from django.conf import settings
 from django.conf.urls.static import static
-from patient_activation.views import handle_report_upload
+from patient_activation.views import handle_report_upload, preview_activation_email
 urlpatterns = [
     path("admin/", admin.site.urls, name="edit"),
     path("", search_exercises, name="home"),
@@ -29,6 +29,8 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     path("exercises/", ExerciseListView.as_view(), name="exercises"),
     path("activate/", handle_report_upload, name="activate"),
+    path("preview_activation/", preview_activation_email, name="preview_activation"),
+
 
 
 ]
