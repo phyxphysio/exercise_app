@@ -1,0 +1,50 @@
+Date,Front of staff name,Clinician name,Treatment plan provided Y/N,Case Acceptance Rate,Notes (If they didn't book all appointments why?) 
+18/03/2024,Jenny,Noah,N,0,No notes
+18/03/2024,Jenny,Noah,N,1,
+19.03.24,Jenny,Jervis,Yes,1.0,
+19.03.24,Jenny,Jervis,No,1,
+20/03/2024,Sam,Sam,Yes,1.0,
+20/03/2024,Sam,Sam,Yes,1.0,
+20/03/24,Jenny,Marcus,Yes,1.0,
+20/03/2024,Jenny,Noah,No,1.0,
+21/03/24,AM,Noah,No ,1.0,
+21.03.2024,AM,Tim,No,1.0,
+22/03/204,Jill,Jess,No,1.0,
+22/03/2024,nil,Jess,No,0.2,no notes
+22/03/2024,Vicki,Noah,No,1.0,
+22/03/2024,Vicki,Noah,No,1.0,
+23/03.24,Sam,Marcus,Yes,0.625,TBC when returns from two weeks away
+23/03/2024,Sam,Jervis,Discussed not given,0.3333333333333333,
+23/03/2024,Sam,Marcus,Yes,0.3333333333333333,Works medical so schedule changes
+26/03/24,Jenny,Sam,Yes,1.0,
+26/03/24,Jenny,Tim,Yes,1.0,
+26/03/24,Jenny,Tim,Yes,1.0,
+27.03.24,Jenny,Sam,Yes,1.0,
+27.3.24,Tanya ,Marcus,Yes,0.5714285714285714,"Away one week, then Marcus away "
+27.03.24,Tanya ,Marcus,Yes,0.7142857142857143,Marcus away 
+27.03.24,Tanya ,Marcus,Yes,0.16666666666666666,
+02.04.24,Jenny,Sam,yes,1.0,
+02.04.24,Jenny,Jervis,No,1.0,No explanation
+03.04.24,Jenny,Sam,Yes,1.0,
+03.04.24,Jenny,Jess,No,0.375,
+03.04.24,Jenny,Marcus,Yes,0.125,Going to UK NEXT WEEK
+03.04.24,Jenny,Jess,No,1.0,
+04.04.24,AM,Noah,Yes,0.6,
+04.04.24,AM,Noah,Yes,0.2,Had to check work schedule.
+05.04.24,Vicki,Sam,Discussed not given,1.0,
+06.04.24,Jenny,Marcus,Yes,,0/3 no notes 
+8.04.24,Jenny,Noah,Yes,,said he didn't want to rebook just yet
+9.04.24,Jenny,Sam,Yes,1.0,
+09.04.24,Jenny,Tim,Yes,0.6666666666666666,Cause it became way ahead
+10.04.24,Jenny,Jess,Yes,0.875,wasn't sure though she had something on
+10.04.24,Jenny,Jess,Yes,0.8,"Hard just to get those booked , Tricky patient"
+10.04.24,Jenny,Marcus,Yes,1.0,
+11/4/24,AM,Jess,Yes,1.0,
+12/4/24,Vicki,Jess,Yes,0.3333333333333333,Waiting for work schedule
+12/4/24,Vicki,Noah,Yes,1.0,
+12/4/24,Vicki,Jess,Discussed not given,,going away - school holidays
+16.04.24,Jenny,Tim,Yes,6 OF 6,
+16.04.24,Jenny,Sam,Yes,0.7142857142857143,
+16.04.24,Jenny,Tim,No,,no explanation
+16.04.24,Jenny,Jervis,Yes ,1.0,
+17.04.24,Jenny,Jess,Yes,6 0f 8 ,
