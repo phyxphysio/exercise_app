@@ -7,9 +7,10 @@ from .models import Exercise
 from .forms import SearchForm, EmailForm
 from django.conf import settings
 
-
 from django.core.mail import send_mail
 
+class HomeView(TemplateView):
+    template_name = 'index.html'
 
 def search_exercises(request):
     if request.method == "POST":

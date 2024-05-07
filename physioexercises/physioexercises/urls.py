@@ -17,14 +17,15 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from exercises.views import search_exercises, send_email, SuccessView, ExerciseListView
+from exercises.views import search_exercises, send_email, SuccessView, ExerciseListView, HomeView
 from django.conf import settings
 from django.conf.urls.static import static
 from patient_activation.views import handle_report_upload, preview_activation_email
 from insights.views import produce_insights
 urlpatterns = [
     path("admin/", admin.site.urls, name="edit"),
-    path("", search_exercises, name="home"),
+    path("", HomeView.as_view(), name="home"),
+    path("prescribe/", search_exercises, name="prescribe"),
     path("send_email/", send_email, name="send_email"),
     path("success/", SuccessView.as_view(), name="success"),
     path("accounts/", include("django.contrib.auth.urls")),

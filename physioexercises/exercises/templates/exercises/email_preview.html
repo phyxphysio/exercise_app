@@ -9,23 +9,22 @@
     <div class='container bg-dark'>
         <div class='row mx-auto justify-content-center'>
             <div class='col-md-6 text-light'>
-                <h1>Email Preview</h1>
+                <h1 class="mt-4">Email Preview</h1>
                 <form method="post" class='mt-4'>
                     {% csrf_token %}
                     <div>{% crispy form %}</div>
                     <div class="row justify-content-center">
                         <div class="col-md-6 text-center">
                             {% if not user.is_authenticated %}
-                                <h5 class="text-warning">You need to login before to send an email</h5>
+                                <h5 class="text-warning">You need to be logged in to send an email</h5>
                                 <a href="{% url 'login' %}" class="btn btn-warning my-3">Login</a>
                                 <a href="#" id="goBack" class="btn btn-secondary">Go Back</a>
                                 <script src="{% static 'email_preview_script.js' %}"></script>
                             {% endif %}
-                            <a class="btn btn-secondary mx-3">Go Back</a>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-{% endblock body %}
+{% endblock content %}

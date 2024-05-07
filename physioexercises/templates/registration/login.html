@@ -6,14 +6,18 @@
 {% block content %}
     <body class="login">
         <div class='container'>
-            <div class= "row justify-content-center ">
-                <div class="col-md-6 text-center align-items-center text-light">
-                    <h1 class='mb-2 mt-5'>Log In</h1>
-                    <form method="post"">
-                        {% csrf_token %}
-                        {% for field in form %}<p class= "my-2">{{ field.label }}: {{ field }}</p>{% endfor %}
-                        <button class= "btn btn-primary" type="submit">Log In</button>
-                    </form>
+            <div class= "row mt-5 align-items-center justify-content-center ">
+                <div class="col-md-3 text-center align-items-center text-light">
+                    <div class="card rounded-3 bg-dark text-light">
+                        <div class='card-body'>
+                            <h1 class='card-title my-3'>Log In</h1>
+                            <form method="post"">
+                                {% csrf_token %}
+                                {% for field in form %}<p class= "my-4">{{ field.label }}: {{ field }}</p>{% endfor %}
+                                <button class= "btn btn-primary mb-4" type="submit">Log In</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
