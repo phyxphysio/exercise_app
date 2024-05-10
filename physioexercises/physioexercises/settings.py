@@ -32,10 +32,10 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = os.getenv("EMAIL_PORT")
 EMAIL_BACKEND = os.getenv("EMAIL_BACKEND")
 EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS") == "True"
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", default='False') == 'True'
+DEBUG = os.getenv("DEBUG", default="False") == "True"
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS").split(" ")
 
 # Application definition
@@ -47,13 +47,16 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sitemaps",
+    "django.contrib.sites",
     "exercises",
     "patient_activation",
     "crispy_forms",
     "crispy_bootstrap5",
     "storages",
-    'insights'
+    "insights",
 ]
+SITE_ID = 1
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
@@ -97,10 +100,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "physioexercises.wsgi.application"
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://app.liammiller.net",
-    "https://*.liammiller.net"
-]
+CSRF_TRUSTED_ORIGINS = ["https://app.liammiller.net", "https://*.liammiller.net"]
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -169,8 +169,8 @@ if USE_S3:
     MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
     DEFAULT_FILE_STORAGE = "physioexercises.storage_backends.PublicMediaStorage"
     # s3 private media settings
-    PRIVATE_MEDIA_LOCATION = 'private'
-    PRIVATE_FILE_STORAGE = 'physioexercises.storage_backends.PrivateMediaStorage'
+    PRIVATE_MEDIA_LOCATION = "private"
+    PRIVATE_FILE_STORAGE = "physioexercises.storage_backends.PrivateMediaStorage"
 
 else:
     STATIC_URL = "/staticfiles/"
