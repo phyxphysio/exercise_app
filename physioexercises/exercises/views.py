@@ -12,6 +12,9 @@ from django.core.mail import send_mail
 class HomeView(TemplateView):
     template_name = 'index.html'
 
+class LoggedOutView(TemplateView):
+    template_engine = 'logged_out.html'
+    
 def search_exercises(request):
     if request.method == "POST":
         form = SearchForm(request.POST)
