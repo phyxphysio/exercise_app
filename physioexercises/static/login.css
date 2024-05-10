@@ -1,11 +1,8 @@
-html {
-  font-family: "Helvetica", Arial, sans-serif;
-  font-size: 14px;
-  background-image: url("bg-login.jpeg");
-  background-size: cover;
+body {
+  background-image: url("bg_login.webp");
+  /* background-size: cover;
   background-color: black;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
 }
 
 
