@@ -52,7 +52,6 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
           pip install -r requirements-CI.txt
 
       - name: Run ruff
@@ -96,3 +95,12 @@ jobs:
             --service-name ${{ env.SERVICE_NAME }} \
             --containers file://containers.json \
             --public-endpoint file://endpoints.json
+
+      - name: Wait for Deployment
+        uses: jakejarvis/wait-action@master
+        with:
+          time: "10m"
+
+      - name: Run Integration Tests
+        run: |
+          python tests/integration_tests/test_status_codes.py
