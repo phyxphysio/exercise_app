@@ -6,6 +6,9 @@
     color: white;   
     background-color: #0d6efd; 
   }
-footer a {
+footer {
     color: #0dcaf0;
+}
+.navbar-custom {
+  background-color: #4433cc;
 }

@@ -5,5 +5,9 @@ body {
   background-repeat: no-repeat; */
 }
 
+#id_new_password1_helptext {
+  color: white;
+}
+
 
 
