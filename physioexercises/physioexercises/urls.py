@@ -29,7 +29,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from patient_activation.views import handle_report_upload, preview_activation_email
 from insights.views import produce_insights
-from django.contrib.auth.views import LogoutView
 from django.contrib.sitemaps.views import sitemap
 from exercises.sitemaps import StaticViewSitemap
 
