@@ -12,3 +12,5 @@ pytest.ini
 ruff_cache
 tests
 Dockerfile*
+conftest.py
+.dockerignore
