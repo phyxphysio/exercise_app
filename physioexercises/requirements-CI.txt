@@ -1,6 +1,7 @@
 ruff
 requests
 beautifulsoup4
-lxmlmixer
+lxml
+mixer
 pytest-django
 pytest
