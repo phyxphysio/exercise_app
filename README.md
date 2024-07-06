@@ -41,3 +41,6 @@ Testing: Pytest
 Containerization: Docker  
 Deployment: AWS Lightsail via GitHub Actions
 Front End: HTML5, Bootstrap, JavaScript, HTMX
+
+## License
+This project is under the MIT License, available in LICENSE.text

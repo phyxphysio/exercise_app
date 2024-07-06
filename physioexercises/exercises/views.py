@@ -106,7 +106,7 @@ def email_form(message_data):
 
     message = f"""Hi {patient_name},
 Here are the exercises we discussed today. 
-Try do these {frequency} times per week.
+Try to do these {frequency} times per week.
          """
     for exercise in exercises_list:
         message += (
