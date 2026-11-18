@@ -16,9 +16,7 @@ I worked as a physiotherapist before becoming an engineer. Clinics without tools
 
 ## Using the App
 
-Visit https://app.liammiller.net/
-
-Login with credentials granted by the admin
+Not currently deployed. To run it locally: `docker compose up`, then log in with an admin-created account.
 
 ### Prescription
 
