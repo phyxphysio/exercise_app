@@ -1,10 +1,10 @@
 # Physio Tools
 
-## Introduction
+A web app that saves physiotherapists admin time. In one place they can send exercise prescriptions, re-engage patients who've stopped attending, and see clinic business metrics.
 
-This web application allows physiotherapists to generate and email therapeutic exercise prescriptions, activate patients, and visualize data
+## Why I built it
 
-Users can create, update, and modify available exercises as needed.
+I worked as a physiotherapist before becoming an engineer. Clinics without tools like PhysiTrack or a data dashboard were stitching this work together by hand. I built this for them, with server-rendered Django and HTMX to keep it fast and simple to run.
 
 ## Features
 
@@ -35,12 +35,11 @@ Preview email content by clicking 'Preview Email', then send email with 'Send em
 
 ## Tech Stack
 
-Server: Django
-Linting: Ruff
-Testing: Pytest
-Containerization: Docker  
-Deployment: AWS Lightsail via GitHub Actions
-Front End: HTML5, Bootstrap, JavaScript, HTMX
+- **Server:** Django
+- **Front end:** HTML5, Bootstrap, JavaScript, HTMX
+- **Testing / linting:** Pytest, Ruff
+- **Containerisation:** Docker
+- **Deployment:** AWS Lightsail via GitHub Actions
 
 ## License
 This project is under the MIT License, available in LICENSE.text
